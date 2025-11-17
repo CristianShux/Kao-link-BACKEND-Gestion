@@ -79,7 +79,8 @@ app = FastAPI()
 origins = [
     "https://kao-link-backend-gestion.onrender.com", 
     "http://localhost:5173",                 
-    "http://localhost:3000",                
+    "http://localhost:3000",
+    "https://kao-link-frontend.vercel.app"                
 ]
 
 app.add_middleware(
