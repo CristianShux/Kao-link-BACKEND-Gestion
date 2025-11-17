@@ -77,9 +77,9 @@ class AsistenciaManual(BaseModel):
 app = FastAPI()
 
 origins = [
-    "https://render-crud-jc22.onrender.com", # El de producción
-    "http://localhost:5173",                 # ¡Agregá este!
-    "http://localhost:3000",                 # (Por si acaso)
+    "https://kao-link-backend-gestion.onrender.com", 
+    "http://localhost:5173",                 
+    "http://localhost:3000",                
 ]
 
 app.add_middleware(
