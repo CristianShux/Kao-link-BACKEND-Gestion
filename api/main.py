@@ -753,4 +753,25 @@ def enviar_correo_manual_endpoint(data: CorreoManual):
         return {"detalle": "Correo enviado correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al enviar el correo: {e}")
+    
+#listado de los departamentos, categorias y puestos
+@app.get("/api/departamentos/")
+def obtener_departamentos():
+    try:
+        return AdminCRUD.listar_departamentos()
+    except Exception:
+        raise HTTPException(status_code=500, detail="Error al obtener los departamentos")
 
+@app.get("/api/categorias/")
+def obtener_categorias():
+    try:
+        return AdminCRUD.listar_categorias()
+    except Exception:
+        raise HTTPException(status_code=500, detail="Error al obtener las categorías")
+
+@app.get("/api/puestos/")
+def obtener_puestos():
+    try:
+        return AdminCRUD.listar_puestos()
+    except Exception:
+        raise HTTPException(status_code=500, detail="Error al obtener los puestos")

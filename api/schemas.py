@@ -157,30 +157,4 @@ class UsuarioModel(BaseModel):
     fecha_creacion: date | None
     motivo: str | None
 
-class Permisos(BaseModel):
-    online_login: bool = False
-    offline_login: bool = False
-    ver_datos_personales: bool = False
-    editar_datos_personales: bool = False
-    ver_datos_laborales: bool = False
-    agregar_datos_laborales: bool = False
-    editar_datos_laborales: bool = False
-    agregar_empleado: bool = False
-    ver_registro_asistencia: bool = False
-    ver_informacion_bancaria: bool = False
-    editar_informacion_bancaria: bool = False
-    ingresar_asistencia: bool = False
-    ingresar_inasistencia: bool = False
-    ver_historial_nominas: bool = False
-    calcular_nomina_manualmente: bool = False
-    calcular_nomina_automaticamente: bool = False
-    agregar_concepto: bool = False
-    agregar_departamento: bool = False
-    agregar_puesto: bool = False
-    agregar_categoria: bool = False
-    agregar_salario_con_vigencia: bool = False
-    ver_vista_previa_recibo_sueldo: bool = False
-    descargar_recibo_sueldo: bool = False
-    ver_reportes: bool = False
-    cerrar_sesion: bool = False
     

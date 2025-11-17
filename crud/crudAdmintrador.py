@@ -1080,6 +1080,55 @@ class AdminCRUD:
                 cur.close()
             if conn:
                 conn.close()
+                
+#Listar departamentos, categorias, puestos
+    @staticmethod
+    def listar_departamentos():
+        conn = None
+        cur = None
+        try:
+            conn = db.get_connection()
+            cur = conn.cursor()
+            cur.execute("SELECT id_departamento, nombre, descripcion FROM departamento ORDER BY id_departamento ASC")
+            rows = cur.fetchall()
+            return [{"id_departamento": row[0], "nombre": row[1], "descripcion": row[2]} for row in rows]
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
+                
+    @staticmethod
+    def listar_categorias():
+        conn = None
+        cur = None
+        try:
+            conn = db.get_connection()
+            cur = conn.cursor()
+            cur.execute("SELECT id_categoria, nombre_categoria FROM categoria ORDER BY id_categoria ASC")
+            rows = cur.fetchall()
+            return [{"id_categoria": row[0], "nombre_categoria": row[1]} for row in rows]
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
+                
+    @staticmethod
+    def listar_puestos():
+        conn = None
+        cur = None
+        try:
+            conn = db.get_connection()
+            cur = conn.cursor()
+            cur.execute("SELECT id_puesto, nombre FROM puesto ORDER BY id_puesto ASC")
+            rows = cur.fetchall()
+            return [{"id_puesto": row[0], "nombre": row[1]} for row in rows]
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
 
     @staticmethod
     def buscar_informacion_laboral_completa_por_id_empleado(id_empleado: int):
