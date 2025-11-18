@@ -1,16 +1,25 @@
+import os
 import random
 import string
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from dotenv import load_dotenv 
+
+load_dotenv() 
+
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY') 
+EMAIL_ORIGEN = os.getenv("EMAIL_ORIGEN")
+
+# Asegúrate de importar tu CRUD
 from crud.crudAdmintrador import AdminCRUD 
 
-SENDGRID_API_KEY = "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" 
-
-EMAIL_ORIGEN = "linkkaosor2@gmail.com" 
-# --------------------------------------------------------
 
 def _enviar_email_api(destinatario, asunto, contenido_html):
-    """Función interna auxiliar para enviar mediante API"""
+    """Función interna auxiliar para enviar mediante API de SendGrid"""
+    if not SENDGRID_API_KEY:
+        print("Error: SENDGRID_API_KEY no está configurada.")
+        return False
+        
     message = Mail(
         from_email=EMAIL_ORIGEN,
         to_emails=destinatario,
@@ -26,6 +35,8 @@ def _enviar_email_api(destinatario, asunto, contenido_html):
     except Exception as e:
         print(f"Error crítico enviando correo: {e}")
         return False
+
+# --- El resto de tus funciones usan _enviar_email_api normalmente ---
 
 def enviar_correo_generico(tipo, id_empleado, mensaje):
     empleado = AdminCRUD.obtener_empleado_por_id(id_empleado)
@@ -51,7 +62,6 @@ def enviar_codigo_verificacion(nombre, correo, codigo):
         <p>Saludos,<br>Equipo de Kao-Link</p>
     </div>
     """
-    
     asunto = 'Código de Verificación - Kao-Link'
     _enviar_email_api(correo, asunto, cuerpo_html)
 
